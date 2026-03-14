@@ -17,9 +17,15 @@ resource "tribal_admin_settings" "org" {
   notify_hour      = 9  # 9 AM UTC
   slack_webhook    = "https://hooks.slack.com/services/YOUR/ORG/WEBHOOK"
   alert_on_overdue = true
+  alert_on_delete  = true
 }
 
-# Manage a tracked resource
+# Manage a team
+resource "tribal_team" "platform" {
+  name = "Platform Team"
+}
+
+# Manage a tracked API key resource, assigned to a team
 resource "tribal_resource" "prod_api_key" {
   name                    = "Production API Key"
   dri                     = "platform-team@example.com"
@@ -29,8 +35,10 @@ resource "tribal_resource" "prod_api_key" {
   generation_instructions = "Log into Stripe dashboard > Developers > API keys > Create new key"
   secret_manager_link     = "https://vault.example.com/secret/stripe-api-key"
   slack_webhook           = "https://hooks.slack.com/services/TEAM/CHANNEL/WEBHOOK"
+  team_id                 = tribal_team.platform.id
 }
 
+# Manage an SSH deploy key
 resource "tribal_resource" "ssh_deploy_key" {
   name                    = "GitHub Deploy Key - myapp"
   dri                     = "devops@example.com"
@@ -41,6 +49,7 @@ resource "tribal_resource" "ssh_deploy_key" {
   slack_webhook           = "https://hooks.slack.com/services/TEAM/CHANNEL/WEBHOOK"
 }
 
+# Manage a TLS certificate with automatic expiry refresh via endpoint polling
 resource "tribal_resource" "tls_cert" {
   name                    = "api.example.com TLS Certificate"
   dri                     = "infra@example.com"
@@ -50,4 +59,6 @@ resource "tribal_resource" "tls_cert" {
   generation_instructions = "Run certbot renew or use ACM auto-renewal"
   secret_manager_link     = "arn:aws:acm:us-east-1:123456789012:certificate/abc123"
   slack_webhook           = "https://hooks.slack.com/services/TEAM/CHANNEL/WEBHOOK"
+  certificate_url         = "https://api.example.com"
+  auto_refresh_expiry     = true
 }
