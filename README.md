@@ -183,7 +183,7 @@ Once published, users can reference the provider as:
 terraform {
   required_providers {
     tribal = {
-      source  = "cberndt/tribal"
+      source  = "seaburr/tribal"
       version = "~> 0.1"
     }
   }

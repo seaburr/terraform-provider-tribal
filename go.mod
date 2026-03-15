@@ -1,4 +1,4 @@
-module github.com/cberndt/tribal-tf-provider
+module github.com/seaburr/terraform-provider-tribal
 
 go 1.25.1
 

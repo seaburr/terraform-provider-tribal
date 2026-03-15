@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     tribal = {
-      source = "registry.terraform.io/cberndt/tribal"
+      source = "registry.terraform.io/seaburr/tribal"
     }
   }
 }

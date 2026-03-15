@@ -5,7 +5,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/cberndt/tribal-tf-provider/internal/provider"
+	"github.com/seaburr/terraform-provider-tribal/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
 
@@ -18,7 +18,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/cberndt/tribal",
+		Address: "registry.terraform.io/seaburr/tribal",
 		Debug:   debug,
 	}
 

@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 
-	provider "github.com/cberndt/tribal-tf-provider/internal/provider"
+	provider "github.com/seaburr/terraform-provider-tribal/internal/provider"
 )
 
 const (
