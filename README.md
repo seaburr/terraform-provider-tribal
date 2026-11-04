@@ -140,7 +140,7 @@ resource "tribal_admin_settings" "org" {
 
 ### Requirements
 
-- Go 1.21+
+- Go 1.26+
 - Terraform 1.5+
 
 ### Build
